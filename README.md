@@ -1,20 +1,20 @@
 # Project template for [gulp.js](http://gulpjs.com/)
-<img width="114px" height="257px" align="right" src="https://raw.githubusercontent.com/gulpjs/artwork/master/gulp-2x.png"/>
 
-[ ![Codeship Status for leonidas/gulp-project-template](https://codeship.com/projects/07620890-e45d-0132-b176-5e88bc3b0df8/status?branch=master)](https://codeship.com/projects/81833)
+This is a fork of the awesome [leonidas/gulp-project-template](https://github.com/leonidas/gulp-project-template) put together and maintained by Riku Rouvila. This fork only uses different defaults for some technologies and adds some Knockout.js specific structure.
 
 ### What it does
 * [Jade](http://jade-lang.com) files to HTML
 * [Stylus](http://learnboost.github.io/stylus) files to CSS
-* [ES6+ JavaScript](https://babeljs.io) files to ES5 Javascript through [browserify](http://browserify.org/)
-    * You are able to use `import` in your client-side code
+* [CoffeeScript](http://coffeescript.org/) files to ES5 Javascript through [browserify](http://browserify.org/)
+    * You are able to use `require` in your client-side code
 * Uses [BrowserSync](http://www.browsersync.io/) to serve your static files to localhost:9001 and to automatically reload your browser when files change.
+* Has [Knockout.js](http://knockoutjs.com/) component system in place
 
 ## Getting things up and running
 - Install [Node.js](http://nodejs.org)
 
 ```
- git clone git@github.com:leonidas/gulp-project-template.git <your project name>
+ git clone git@github.com:tjyrkinen/gulp-knockout-project-template.git <your project name>
  cd <your project name>
  npm install
  npm start
@@ -28,6 +28,8 @@
     * Compiles your files, starts watching files for changes, serves static files to port 9001
 * npm run build
     * Builds everything
+* npm run component:create <component-name>
+    * Creates a Knockout.js custom component/element ready to be used in layout. Creates the .jade and .coffee parts and adds component registration code.
 
 # Production build
 Minification, uglification and other tasks you're expected to run before deploying your product can be made by running the build command with env variable NODE_ENV set to "production"

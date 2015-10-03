@@ -26,20 +26,20 @@ const config = {
   source: './src',
   destination: './public',
   scripts: {
-    source: './src/main.js',
+    source: './src/js/main.coffee',
     destination: './public/js/',
-    extensions: ['.jsx'],
+    extensions: ['.coffee'],
     filename: 'bundle.js'
   },
   templates: {
-    source: './src/*.jade',
-    watch: './src/*.jade',
+    source: './src/html/**/*.jade',
+    watch: './src/html/**/*.jade',
     destination: './public/',
     revision: './public/**/*.html'
   },
   styles: {
-    source: './src/style.styl',
-    watch: './src/**/*.styl',
+    source: './src/css/style.styl',
+    watch: './src/css/**/*.styl',
     destination: './public/css/'
   },
   assets: {
@@ -89,7 +89,7 @@ gulp.task('scripts', () => {
   return pipeline.pipe(gulp.dest(config.scripts.destination));
 });
 
-gulp.task('templates', ['styles', 'scripts'], () => {
+gulp.task('templates', ['styles'], () => {
   const resources = gulp.src(config.inject.resources, {read: false});
 
   const pipeline = gulp.src(config.templates.source)

@@ -2,20 +2,29 @@
   "name": "gulp-template",
   "version": "1.0.0",
   "description": "Project template for gulp.js",
-  "author": "Riku Rouvila <riku.rouvila@leonidasoy.fi>",
+  "author": "Toni Jyrkinen <toni.jyrkinen@leonidasoy.fi>",
+  "contributors": [
+    "Riku Rouvila <riku.rouvila@leonidasoy.fi>"
+  ],
   "license": "MIT",
   "main": "gulpfile.js",
   "scripts": {
     "start": "gulp",
     "build": "gulp build",
     "lint": "eslint src",
-    "test": "mocha src/**/__tests__/*.js --compilers js:babel/register --require test/test-helper"
+    "test": "mocha src/**/__tests__/*.js --compilers js:babel/register --require test/test-helper",
+    "component:create": "coffee scripts/create_component.coffee $1"
   },
   "keywords": [
     "gulp",
     "template"
   ],
   "dependencies": {
+    "brfs": "^1.4.1",
+    "coffee-script": "^1.10.0",
+    "coffeeify": "^1.1.0",
+    "knockout": "^3.3.0",
+    "knockout.punches": "^0.5.1",
     "lodash": "^3.9.1"
   },
   "devDependencies": {
@@ -47,18 +56,15 @@
     "mocha": "^2.2.5",
     "node-notifier": "^4.2.1",
     "rimraf": "^2.3.4",
+    "sync-exec": "^0.6.2",
     "vinyl-source-stream": "~1.0.0",
     "vinyl-transform": "^1.0.0",
     "watchify": "^3.2.1"
   },
   "browserify": {
     "transform": [
-      [
-        "babelify",
-        {
-          "stage": 0
-        }
-      ]
+      "coffeeify",
+      "brfs"
     ]
   }
 }
