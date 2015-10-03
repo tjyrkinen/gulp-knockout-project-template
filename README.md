@@ -57,9 +57,6 @@ All dependencies are meant to be installed with **npm**.
 
 ## FAQ
 
-### I want to use CoffeeScript instead of JavaScript
-Check out the [coffee branch](https://github.com/leonidas/gulp-project-template/tree/coffee)
-
 ## Useful resources
 * [Browserify handbook](https://github.com/substack/browserify-handbook)
   * [avoiding ../../../../../../..](https://github.com/substack/browserify-handbook#avoiding-)
