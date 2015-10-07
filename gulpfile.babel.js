@@ -70,7 +70,7 @@ function handleError(err) {
   return this.emit('end');
 }
 
-gulp.task('scripts', () => {
+gulp.task('scripts', ['templates'], () => {
   let pipeline = browserify(browserifyConfig)
     .bundle()
     .on('error', handleError)
