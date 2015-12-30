@@ -9,10 +9,10 @@
   "license": "MIT",
   "main": "gulpfile.js",
   "scripts": {
-    "start": "gulp",
-    "build": "gulp build",
+    "start": "rm -rf public && gulp",
+    "build": "rm -rf public && gulp build",
     "lint": "eslint src",
-    "test": "mocha src/**/__tests__/*.js --compilers js:babel/register --require test/test-helper",
+    "test": "mocha src/**/__tests__/*.js --compilers js:babel-core/register --require test/test-helper",
     "component:create": "coffee scripts/create_component.coffee $1"
   },
   "keywords": [
@@ -27,20 +27,63 @@
     "knockout.punches": "^0.5.1",
     "lodash": "^3.9.1"
   },
+  "build": {
+    "source":"./src",
+    "destination":"./public",
+    "scripts":{
+      "source":"./src/main.js",
+      "destination":"./public/js/",
+      "extensions":[],
+      "filename":"bundle.js"
+    },
+    "templates":{
+      "source":"./src/*.jade",
+      "watch":"./src/*.jade",
+      "destination":"./public/",
+      "revision":"./public/**/*.html"
+    },
+    "styles":{
+      "source":"./src/**/*.styl",
+      "watch":"./src/**/*.styl",
+      "destination":"./public/css/",
+      "filename":"style.css",
+      "browserVersions":[
+        "last 2 versions",
+        "Chrome 34",
+        "Firefox 28",
+        "iOS 7"
+      ]
+    },
+    "assets":{
+      "source":"./src/assets/**/*.*",
+      "watch":"./src/assets/**/*.*",
+      "destination":"./public/"
+    },
+    "inject":{
+      "resources":[
+        "./public/**/*.css",
+        "./public/**/*.js"
+      ]
+    }
+  },
   "devDependencies": {
-    "babel": "^5.8.23",
-    "babel-core": "^5.8.25",
+    "babel": "^6.1.18",
+    "babel-core": "^6.2.1",
     "babel-eslint": "^4.1.3",
-    "babelify": "^6.1.1",
+    "babel-preset-es2015": "^6.1.18",
+    "babelify": "^7.2.0",
     "browser-sync": "^2.9.4",
     "browserify": "^10.2.1",
+    "browserify-hmr": "^0.3.1",
     "chai": "^3.0.0",
+    "envify": "^3.4.0",
     "eslint": "^1.5.1",
     "eslint-config-airbnb": "0.0.9",
     "eslint-plugin-react": "^3.4.2",
     "exorcist": "^0.4.0",
     "gulp": "3.9.0",
     "gulp-autoprefixer": "1.0.1",
+    "gulp-concat": "^2.6.0",
     "gulp-duration": "0.0.0",
     "gulp-inject": "^3.0.0",
     "gulp-jade": "~0.9.0",
@@ -65,6 +108,12 @@
     "transform": [
       "coffeeify",
       "brfs"
+      [
+        "babelify"
+      ],
+      [
+        "envify"
+      ]
     ]
   }
 }
