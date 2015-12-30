@@ -12,16 +12,18 @@ className = _.capitalize _.camelCase(tagName)
 fs.appendFileSync "#{srcPath}/js/components/index.coffee", """\n
 ko.components.register '#{tagName}',
   viewModel: require './#{tagName}'
-  template: fs.readFileSync(__dirname + '/../../../public/components/#{tagName}.html', 'utf8')
+  template: element: 'component-#{tagName}'
 """
 
-# cmd = """sed -i .bk '/#COMPONENTS/a\\
-# #{componentRegister}' #{srcPath}/js/components/index.coffee"""
-# if exec(cmd).status != 0
-#   console.log 'Failed inserting require line into main.coffee'
-#   process.exit(1)
-
 console.log 'Updated components/index.coffee'
+
+# Insert include for the component template
+fs.appendFileSync "#{srcPath}/html/components/index.jade", """\n
+template#component-#{tagName}
+  include ./#{tagName}.jade
+"""
+
+console.log 'Updated components/index.jade'
 
 # Create template file
 if exec("echo \"p #{tagName}\" > #{srcPath}/html/components/#{tagName}.jade").status
