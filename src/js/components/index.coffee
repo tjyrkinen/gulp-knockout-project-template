@@ -9,3 +9,4 @@ fs = require 'fs'
 ko.components.register 'app-main',
   viewModel: require './app-main'
   template: element: 'component-app-main'
+  synchronous: true

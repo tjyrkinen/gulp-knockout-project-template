@@ -13,6 +13,7 @@ fs.appendFileSync "#{srcPath}/js/components/index.coffee", """\n
 ko.components.register '#{tagName}',
   viewModel: require './#{tagName}'
   template: element: 'component-#{tagName}'
+  synchronous: true
 """
 
 console.log 'Updated components/index.coffee'
