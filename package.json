@@ -107,7 +107,7 @@
   "browserify": {
     "transform": [
       "coffeeify",
-      "brfs"
+      "brfs",
       [
         "babelify"
       ],
