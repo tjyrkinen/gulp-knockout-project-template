@@ -44,7 +44,7 @@ function handleError(err) {
   return this.emit('end');
 }
 
-gulp.task('scripts', ['templates'], () => {
+gulp.task('scripts', () => {
   let pipeline = browserify(browserifyConfig)
     .bundle()
     .on('error', handleError)
@@ -63,9 +63,8 @@ gulp.task('scripts', ['templates'], () => {
   return pipeline.pipe(gulp.dest(config.scripts.destination));
 });
 
-gulp.task('templates', ['styles'], () => {
+gulp.task('templates', ['styles', 'scripts'], () => {
   const resources = gulp.src(config.inject.resources, {read: false});
-
   const pipeline = gulp.src(config.templates.source)
   .pipe(jade({
     pretty: !production
